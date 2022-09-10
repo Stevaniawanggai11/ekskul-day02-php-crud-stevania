@@ -1,6 +1,8 @@
 <?php
 
-    
+    function siswa_create(){
+        // your codes here
+    }
 
     function siswa_read() {
 
@@ -32,4 +34,114 @@
                 echo "0 results";
             }
 
+    }
+        
+    function siswa_read_detail(){
+
+        include __DIR__ . './connection.php';   
+        
+        $get_id = $_GET['id'];
+
+        $sql = "SELECT * FROM ekskul WHERE id=$get_id";
+
+        $result = $conn->query($sql);
+
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+
+                echo'
+                <ul class="list-group">
+                                    
+                    <li class="list-group-item">
+                        Judul
+                        <span class="d-block fw-bold">
+                            '. $row["judul"] .'
+                        </span>
+                    </li>
+                    <li class="list-group-item">
+                        Keterangan
+                        <span class="d-block fw-bold">
+                        '. $row["keterangan"] .'
+                        </span>
+                    </li>
+                    
+                </ul>
+
+                ';
+
+            }
+          } else {
+            echo "0 results";
+          }
+          $conn->close();
+
+    }
+
+    function siswa_update(){
+
+        include __DIR__ . './connection.php';   
+        
+        $get_id = $_GET['id'];
+
+        $sql = "SELECT * FROM ekskul WHERE id=$get_id";
+
+        $result = $conn->query($sql);
+
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+
+                echo'
+                <form action="update&id=0" method="post">
+                <ul class="list-group">
+                                    
+                <li class="list-group-item">
+                    Judul
+                    <span class="d-block fw-bold">
+                        '. $row["judul"] .'
+                    </span>
+                </li>
+                <li class="list-group-item">
+                    Keterangan
+                    <span class="d-block fw-bold">
+                    '. $row["keterangan"] .'
+                    </span>
+                </li>
+
+                <li class="list-group-item">
+                    <label for="nama-lengkap" class="form-label">Judul</label>
+                    <input type="text" name="Judul" class="form-control form-control-lg" value=" '. $row["judul"] .' ">
+                </li>
+                <li class="list-group-item">
+                    <label for="nama-lengkap" class="form-label">keterangan</label>
+                    <input type="text" name="keterangan" class="form-control form-control-lg" value=" '. $row["keterangan"] .' ">
+                </li>
+                <li class="list-group-item">
+                <button type="submit" class="btn btn-lg btn-success w-100"><i class="fa-solid fa-pencil me-2"></i> Update</button>
+                </li>
+                
+            </ul>
+                </form>
+
+
+                ';
+
+
+            }
+          } else {
+            echo "0 results";
+          }
+          $conn->close();
+
+    }
+
+    function siswa_update_process(){
+        // your codes here
+    }
+
+    function siswa_delete(){
+        // your codes here
     }
