@@ -1,17 +1,16 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "sagu_ekskul";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "sagu_ekskul";
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password);
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $database);
 
-$conn = mysqli_connect($servername, $username, $password);
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    // echo "Connected successfully";
 
-// Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-echo "Connected successfully";
 ?>
